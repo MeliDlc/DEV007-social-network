@@ -1,6 +1,7 @@
-/*import { onNavigate } from './main.js';
+import { onNavigate } from "./main";
 
-export const Login = () => {
+
+export const Login = (onNavigate) => {
     const loginDiv = document.createElement('div');
     loginDiv.className = 'login-wrap';
   
@@ -29,6 +30,9 @@ export const Login = () => {
     signUpLabel.htmlFor = 'tab-2';
     signUpLabel.className = 'tab';
     signUpLabel.textContent = 'Registrarse';
+    signInLabel.addEventListener('click',()=>{
+      onNavigate('/register');
+    })
   
     const loginFormDiv = document.createElement('div');
     loginFormDiv.className = 'login-form';
@@ -61,4 +65,4 @@ export const Login = () => {
     loginDiv.appendChild(loginHtmlDiv);
   
     return loginDiv;
-  };*/
+  };
