@@ -1,5 +1,3 @@
-
-
 export const Home = (onNavigate) => {
   const homeDiv = document.createElement('div');
   const buttonRegister = document.createElement('button');

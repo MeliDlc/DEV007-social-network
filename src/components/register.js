@@ -1,5 +1,3 @@
-
-
 export const Register = (onNavigate) => {
   const registerDiv = document.createElement('div');
   registerDiv.className = 'login-wrap';
