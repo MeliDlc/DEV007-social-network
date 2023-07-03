@@ -99,14 +99,14 @@ a {
 
 .login-form .group .label,
 .login-form .group .input,
-.login-form .group .button {
+.login-form .group .button .button2 {
     width: 100%;
     color: #fff;
     display: block;
 }
 
 .login-form .group .input,
-.login-form .group .button {
+.login-form .group .button .button2 {
     border: none;
     padding: 15px 20px;
     border-radius: 25px;

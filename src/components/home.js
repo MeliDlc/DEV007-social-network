@@ -2,9 +2,9 @@ export const home = (onNavigate) => {
   const homeDiv = document.createElement('div');
   const buttonRegister = document.createElement('button');
 
-  buttonRegister.textContent = 'Registrate';
+  buttonRegister.textContent = 'Iniciar Sesion';
 
-  buttonRegister.addEventListener('click', () => onNavigate('/register'));
+  buttonRegister.addEventListener('click', () => onNavigate('/login'));
 
   homeDiv.appendChild(buttonRegister);
 

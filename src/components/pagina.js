@@ -22,6 +22,8 @@ export const pagina = (onNavigate) => {
     </section>
     `;
 
+    buttonHome.addEventListener('click', () => onNavigate('/home'));
+
     PaginaDiv.appendChild(buttonHome);
 
     return PaginaDiv;
