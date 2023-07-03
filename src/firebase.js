@@ -1,21 +1,21 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCyECE5IYVsXOdzLLSHCH5wnm-dcUGahC0",
-  authDomain: "formula-fan-27939.firebaseapp.com",
-  projectId: "formula-fan-27939",
-  storageBucket: "formula-fan-27939.appspot.com",
-  messagingSenderId: "1029391238952",
-  appId: "1:1029391238952:web:dd1f6cece09a48e068721d",
-  measurementId: "G-P5R8RMY53Y"
+  apiKey: "AIzaSyB4ZKK212_iAmcGA_xcVO_073Wpcwb95-g",
+  authDomain: "social-network-cb7f2.firebaseapp.com",
+  projectId: "social-network-cb7f2",
+  storageBucket: "social-network-cb7f2.appspot.com",
+  messagingSenderId: "252333461780",
+  appId: "1:252333461780:web:54edc17e902309e69e3201",
+  measurementId: "G-K5756040T2"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+const analytics = getAnalytics(app);
