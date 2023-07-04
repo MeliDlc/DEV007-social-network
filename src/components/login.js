@@ -1,17 +1,17 @@
-import { crearUsuarioConCorreoYContraseña } from "../lib";
+import { loginUsuarioConCorreoYContraseña } from "../lib";
 
 export const login = (onNavigate) => {
-    const loginDiv = document.createElement('div');
-    loginDiv.className = 'login-wrap';
+  const loginDiv = document.createElement('div');
+  loginDiv.className = 'login-wrap';
 
-    loginDiv.innerHTML += `
+  loginDiv.innerHTML += `
     <div class="login-html">
       <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Iniciar sesion</label>
       <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab" ><a href='/register'>Registrarse</a></label>
       <div class="login-form">
         <div class="sign-in-htm">
           <div class="group">
-            <label for="user" class="label">Correp Eléctronico</label>
+            <label for="user" class="label">Correo Electrónico</label>
             <input id="input-email" type="text" class="input">
           </div>
           <div class="group">
@@ -22,7 +22,7 @@ export const login = (onNavigate) => {
             <input id="check" type="checkbox" class="check" checked>
           </div>
           <div class="group">
-            <input type="submit" class="button" value="Iniciar Sesion">
+            <input type="submit" id="btnLogin" class="button" value="Ingresar">
           </div>
           <div class="hr"></div>
           <div class="group">
@@ -32,31 +32,27 @@ export const login = (onNavigate) => {
             </button>
           </div>
           <div class="foot-lnk">
-            <a href="#forgot">Olvidaste tu contraseña?</a>
+            <a href="#forgot">¿Olvidaste tu contraseña?</a>
           </div>
         </div>
       </div>
     </div>
   `;
-    /*const loginButton = document.createElement('button');
-    loginButton.textContent = 'Iniciar sesión';
-    loginButton.className = 'button';
 
-    loginDiv.appendChild(loginButton);
-    loginDiv.appendChild(loginDiv);*/
+  const loginButton = loginDiv.querySelector('#btnLogin');
+  
 
-    /*const inputEmail = loginDiv.querySelector('#input-email');
-    const inputPassword = loginDiv.querySelector('#input-password');
+  const inputEmail = loginDiv.querySelector('#input-email');
+  const inputPassword = loginDiv.querySelector('#input-password');
 
-    loginButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        crearUsuarioConCorreoYContraseña(
-            inputEmail.value,
-            inputPassword.value
-        ).then(() => {
-            onNavigate('/pagina');
-        });
-    });*/
+  loginButton.addEventListener('click', (e) => {
+    loginUsuarioConCorreoYContraseña(
+      inputEmail.value,
+      inputPassword.value,
+    ).then(() => {
+      onNavigate('/pagina');
+    });
+  });
 
-    return loginDiv;
+  return loginDiv;
 };

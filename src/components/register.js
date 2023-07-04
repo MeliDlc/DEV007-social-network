@@ -3,9 +3,7 @@ import { registrarUsuarioConCorreoYContraseña } from "../lib";
 export const register = (onNavigate) => {
   const registerDiv = document.createElement('div');
   registerDiv.className = 'login-wrap';
-  //<div class="login-wrap">
-
-
+  
   registerDiv.innerHTML += `
   <div class="login-html">
       <input id="tab-1" type="radio" name="tab" class="sign-in" ><label for="tab-1" class="tab"><a href='/login'>Iniciar sesion</a></label>
@@ -17,24 +15,21 @@ export const register = (onNavigate) => {
             <input id="user" type="text" class="input">
           </div>
           <div class="group">
+            <label for="pass" class="label">Correo Electronico</label>
+            <input id="input-correo" type="text" class="input">
+          </div>
+          <div class="group">
             <label for="pass" class="label">Contraseña</label>
-            <input id="pass" type="password" class="input" data-type="password">
+            <input id="input-contraseña" type="password" class="input" data-type="password">
           </div>
           <div class="group">
             <label for="pass" class="label">Repetir Contraseña</label>
-            <input id="pass" type="password" class="input" data-type="password">
+            <input id="input-repetirContra" type="password" class="input" data-type="password">
           </div>
           <div class="group">
-            <label for="pass" class="label">Correo Electronico</label>
-            <input id="pass" type="text" class="input">
-          </div>
-          <div class="group">
-            <input type="submit" class="button" value="Sign Up">
+            <input type="submit" id="btnRegister" class="button" value="Sign Up">
           </div>
           <div class="hr"></div>
-          <!--<div class="foot-lnk">
-            <label for="tab-1">Already Member?</a>
-          </div>-->
           <div class="group">
             <button class="google-btn">
               <span class="icon"></span>
@@ -45,6 +40,26 @@ export const register = (onNavigate) => {
       </div>
     </div>
   `;
+
+  const registerButton = registerDiv.querySelector('#btnRegister');
+
+  /*const usuario = registerDiv.querySelector('#user');*/
+  const inputCorreo = registerDiv.querySelector('#input-correo');
+  const inputContraseña = registerDiv.querySelector('#input-contraseña');
+  /*const inputPasswordAgain = registerDiv.querySelector('#input-repetirContra');*/
+
+  registerButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    registrarUsuarioConCorreoYContraseña(
+      
+      inputCorreo.value,
+      inputContraseña.value,
+    
+    ).then(() => {
+      onNavigate('/pagina');
+    });
+  });
+
 
   return registerDiv;
 };
