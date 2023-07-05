@@ -27,11 +27,11 @@ export const pagina = (onNavigate) => {
         () => {
             const contenidoDelTextarea = PaginaDiv.querySelector(
                 '.new-post__container__textarea');
-            console.log(agregarUnNuevoPost(contenidoDelTextarea.value))
-                .then(() => { })
-                .catch((err) => {
-                    console.log(err);
-                });
+            console.log(agregarUnNuevoPost(contenidoDelTextarea.value).then(() =>
+            {console.log('publicación exitosa') })
+               .catch((err) => {
+                   console.log(err);
+               }) )
         }
     );
     PaginaDiv.appendChild(buttonHome);
