@@ -3,7 +3,7 @@ import { registrarUsuarioConCorreoYContraseña } from "../lib";
 export const register = (onNavigate) => {
   const registerDiv = document.createElement('div');
   registerDiv.className = 'login-wrap';
-  
+
   registerDiv.innerHTML += `
   <div class="login-html">
       <input id="tab-1" type="radio" name="tab" class="sign-in" ><label for="tab-1" class="tab"><a href='/login'>Iniciar sesion</a></label>
@@ -51,15 +51,13 @@ export const register = (onNavigate) => {
   registerButton.addEventListener('click', (e) => {
     e.preventDefault();
     registrarUsuarioConCorreoYContraseña(
-      
       inputCorreo.value,
       inputContraseña.value,
-    
     ).then(() => {
+      alert("Usuario registrado correctamente.");
       onNavigate('/pagina');
     });
   });
-
 
   return registerDiv;
 };
