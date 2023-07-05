@@ -40,7 +40,7 @@ export const login = (onNavigate) => {
   `;
 
   const loginButton = loginDiv.querySelector('#btnLogin');
-  
+
 
   const inputEmail = loginDiv.querySelector('#input-email');
   const inputPassword = loginDiv.querySelector('#input-password');
