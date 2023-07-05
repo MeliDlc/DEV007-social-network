@@ -9,5 +9,5 @@ export const loginUsuarioConCorreoYContraseña = (email, contraseña) => {
 
 export const registrarUsuarioConCorreoYContraseña = (email, contraseña) => {
   return createUserWithEmailAndPassword(auth, email, contraseña);
- 
+
 };

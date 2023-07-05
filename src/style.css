@@ -1,9 +1,32 @@
 body {
     margin: 0;
     font: 600 16px/18px 'Open Sans', sans-serif;
-    background-color: #272e2e;
+    /*background: linear-gradient(#deecfc, #074597);*/
+    background-color: #2166df;
     background-attachment: fixed;
     background-size: cover;
+}
+ 
+.botonInicio {
+    width: 10%;
+    border-radius: 7px;
+    background-color: #e2edf7;
+    font-family: "K2D", sans-serif;
+    color: rgb(22, 21, 21);
+    text-align: center;
+    
+}
+
+.contenedorImg {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    width: 380px;
+    height: 380px;
+    border-radius: 200px;
 }
 
 *,
@@ -34,7 +57,7 @@ a {
     max-width: 525px;
     min-height: 670px;
     position: relative;
-    background: url(../src/css/img/log-bg.jpeg) no-repeat center;
+    
     box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
 }
 
