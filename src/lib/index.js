@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { addDoc, collection } from "firebase/firestore";
+import { collection, addDoc } from "@firebase/firestore";
 import { auth, db } from '../firebase';
 
 export const loginUsuarioConCorreoYContraseña = (email, contraseña) => {
@@ -13,8 +13,8 @@ export const registrarUsuarioConCorreoYContraseña = (email, contraseña) => {
  
 };
 
-export const agregarUnNuevoPost = (contenido, db, auth) => {
-  return addDoc(collection(db,'posts'), {
+export const agregarUnNuevoPost = (contenido) => {
+  addDoc(collection('posts', db), {
     contenido: contenido,
     usuario: auth.currentUser.email,
     datetime: new Date()
