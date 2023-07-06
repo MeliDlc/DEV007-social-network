@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection,updateDoc } from "firebase/firestore";
 import { auth,db } from '../firebase'; 
 
 export const loginUsuarioConCorreoYContraseña = (email, contraseña) => {
@@ -23,3 +23,18 @@ export const agregarUnNuevoPost = (contenido) => {
 };
 
 
+export const guardarCambios = (contenidoP, textarea, guardarButton, cancelarButton, postId) => {
+  const nuevoContenido = textarea.value;
+
+  const postRef = doc(db, 'posts', postId);
+
+  updateDoc(postRef, {
+    contenido: nuevoContenido,
+  })
+    .then(() => {
+      eliminarElementosEdicion(contenidoP, textarea, guardarButton, cancelarButton);
+    })
+    .catch((error) => {
+      console.log("Error al guardar los cambios:", error);
+    });
+};
