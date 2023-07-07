@@ -1,6 +1,6 @@
 import { agregarUnNuevoPost, borrarPost, editarPost } from '../lib';
 import { auth, db } from '../firebase';
-import { updateDoc, doc } from "firebase/firestore";
+import { updateDoc, doc, query, collection, onSnapshot } from "firebase/firestore";
 
 export const pagina = (onNavigate) => {
   const PaginaDiv = document.createElement('div');
@@ -31,12 +31,51 @@ export const pagina = (onNavigate) => {
       agregarUnNuevoPost(contenidoDelTextarea.value)
         .then((docRef) => {
           console.log('publicación exitosa');
-          renderizarPost(contenidoDelTextarea.value, auth.currentUser.email, new Date(), docRef.id);
+          //renderizarPost(contenidoDelTextarea.value, auth.currentUser.email, new Date(), docRef.id);
           contenidoDelTextarea.value = '';
         });
     });
+    const q = query(collection(db, "posts"))
+    onSnapshot(q, (querySnapshot) => {
+      const postsContainer = document.getElementById('postsContainer');
+      querySnapshot.forEach((doc) => {
+        const postDiv = document.createElement('div');
+        postDiv.className = 'posts__post';
+    
+        const contenidoP = document.createElement('p');
+        contenidoP.textContent = doc.data().contenido;
+    
+        const usuarioH6 = document.createElement('h6');
+        usuarioH6.textContent = doc.data().usuario;
+    
+        const datetimeP = document.createElement('p');
+        datetimeP.textContent = doc.data().datetime;
+    
+        const editarButton = document.createElement('button');
+        editarButton.textContent = 'Editar';
+        editarButton.addEventListener('click', () => {
+          editarPostUI(doc.id, contenidoP, editarButton);
+        });
+    
+        const borrarButton = document.createElement('button');
+        borrarButton.textContent = 'Borrar';
+        borrarButton.addEventListener('click', () => {
+          borrarPost(doc.id);
+          postDiv.remove();
+        });
+    
+        postDiv.appendChild(contenidoP);
+        postDiv.appendChild(usuarioH6);
+        postDiv.appendChild(datetimeP);
+        postDiv.appendChild(editarButton);
+        postDiv.appendChild(borrarButton);
+    
+        postsContainer.appendChild(postDiv);
+          console.log(doc.data());
+      })})
+    
 
-  const renderizarPost = (contenido, usuario, datetime, postId) => {
+  /*const renderizarPost = (contenido, usuario, datetime, postId) => {
     const postsContainer = document.getElementById('postsContainer');
 
     const postDiv = document.createElement('div');
@@ -71,7 +110,7 @@ export const pagina = (onNavigate) => {
     postDiv.appendChild(borrarButton);
 
     postsContainer.appendChild(postDiv);
-  };
+  };*/
 
   const editarPostUI = (postId, contenidoP, editarButton) => {
     const contenidoOriginal = contenidoP.textContent;
@@ -112,7 +151,7 @@ export const pagina = (onNavigate) => {
     const nuevoContenido = textarea.value;
 
     await editarPost(postId, nuevoContenido);
-    renderizarPost(nuevoContenido, auth.currentUser.email, new Date(), postId);
+    //renderizarPost(nuevoContenido, auth.currentUser.email, new Date(), postId);
 
     eliminarElementosEdicion(postId, contenidoP, textarea, guardarButton, cancelarButton, editarButton, contenidoOriginal);
   };
