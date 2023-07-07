@@ -22,7 +22,7 @@ export const login = (onNavigate) => {
             <input id="check" type="checkbox" class="check" checked>
           </div>
           <div class="group">
-            <input type="submit" id="btnLogin" class="button" value="Ingresar">
+            <input type="submit" id="btnLogin" class="button" value="Iniciar Sesión">
           </div>
           <div class="hr"></div>
           <div class="group">

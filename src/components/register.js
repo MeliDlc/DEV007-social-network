@@ -27,7 +27,7 @@ export const register = (onNavigate) => {
             <input id="input-repetirContra" type="password" class="input" data-type="password">
           </div>
           <div class="group">
-            <input type="submit" id="btnRegister" class="button" value="Sign Up">
+            <input type="submit" id="btnRegister" class="button" value="Registrase">
           </div>
           <div class="hr"></div>
           <div class="group">
