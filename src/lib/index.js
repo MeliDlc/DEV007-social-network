@@ -45,3 +45,4 @@ export const borrarPost = async (postId) => {
     console.log('Error al borrar el post:', error);
   }
 };
+
