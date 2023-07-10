@@ -27,7 +27,7 @@ export const register = (onNavigate) => {
             <input id="input-repetirContra" type="password" class="input" data-type="password">
           </div>
           <div class="group">
-            <input type="submit" id="btnRegister" class="button" value="Sign Up">
+            <input type="submit" id="btnRegister" class="button" value="Registrase">
           </div>
           <div class="hr"></div>
           <div class="group">
@@ -42,11 +42,8 @@ export const register = (onNavigate) => {
   `;
 
   const registerButton = registerDiv.querySelector('#btnRegister');
-
-  /*const usuario = registerDiv.querySelector('#user');*/
   const inputCorreo = registerDiv.querySelector('#input-correo');
   const inputContraseña = registerDiv.querySelector('#input-contraseña');
-  /*const inputPasswordAgain = registerDiv.querySelector('#input-repetirContra');*/
 
   registerButton.addEventListener('click', (e) => {
     e.preventDefault();

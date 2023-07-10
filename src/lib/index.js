@@ -1,30 +1,38 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { addDoc, collection, deleteDoc, updateDoc,doc } from "firebase/firestore";
-import { auth,db } from '../firebase'; 
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from 'firebase/auth';
 
-export const loginUsuarioConCorreoYContraseña = (email, contraseña) => {
-  return signInWithEmailAndPassword(auth, email, contraseña);
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 
-};
+import {
+  auth,
+  db,
+} from '../firebase';
 
-export const registrarUsuarioConCorreoYContraseña = (email, contraseña) => {
-  return createUserWithEmailAndPassword(auth, email, contraseña);
+// eslint-disable-next-line
+export const loginUsuarioConCorreoYContraseña = (email, contraseña) => signInWithEmailAndPassword(auth, email, contraseña);
 
-};
+// eslint-disable-next-line
+export const registrarUsuarioConCorreoYContraseña = (email, contraseña) => createUserWithEmailAndPassword(auth, email, contraseña);
 
-export const agregarUnNuevoPost = (contenido) => {
+export const agregarUnNuevoPost = (content) => {
   alert(auth);
-  return addDoc(collection(db,'posts'), {
-    contenido: contenido,
+  return addDoc(collection(db, 'posts'), {
+    contenido: content,
     usuario: auth.currentUser.email,
-    datetime: new Date()
+    datetime: new Date(),
   });
 };
 
 export const editarPost = async (postId, nuevoContenido) => {
   const postRef = doc(db, 'posts', postId);
-
   try {
     await updateDoc(postRef, {
       contenido: nuevoContenido,
@@ -37,7 +45,6 @@ export const editarPost = async (postId, nuevoContenido) => {
 
 export const borrarPost = async (postId) => {
   const postRef = doc(db, 'posts', postId);
-  
   try {
     await deleteDoc(postRef);
     console.log('Post borrado exitosamente');
@@ -45,4 +52,3 @@ export const borrarPost = async (postId) => {
     console.log('Error al borrar el post:', error);
   }
 };
-

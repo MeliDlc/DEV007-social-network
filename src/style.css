@@ -96,7 +96,7 @@ a {
 
 .login-html .tab {
     font-size: 22px;
-    margin-right: 15px;
+    /* margin-right: 15px; */
     padding-bottom: 5px;
     margin: 0 15px 10px 0;
     display: inline-block;
@@ -106,7 +106,7 @@ a {
 .login-html .sign-in:checked+.tab,
 .login-html .sign-up:checked+.tab {
     color: #fff;
-    border-color: #1161ee;
+    border-color: #f0e6e2;
 }
 
 .login-form {
@@ -133,7 +133,7 @@ a {
     border: none;
     padding: 15px 20px;
     border-radius: 25px;
-    background: rgba(255, 255, 255, .1);
+    background: rgba(161, 22, 22, 0.1);
 }
 
 .login-form .group input[data-type="password"] {
@@ -142,12 +142,21 @@ a {
 }
 
 .login-form .group .label {
-    color: #aaa;
+    color: #f0efef;
     font-size: 12px;
 }
 
 .login-form .group .button {
-    background: #1161ee;
+    background: #bbcef0;
+}
+
+.google-btn .icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    background-image: url('google-icon.png');
+    background-size: cover;
 }
 
 .login-form .group label .icon {
@@ -156,7 +165,7 @@ a {
     border-radius: 2px;
     position: relative;
     display: inline-block;
-    background: rgba(255, 255, 255, .1);
+    background: rgba(167, 158, 158, 0.1);
 }
 
 .login-form .group label .icon:before,
@@ -232,17 +241,9 @@ a {
     background-color: rgba(40, 57, 101, .9);
 }
 
-.google-btn .icon {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
-    background-image: url('google-icon.png');
-    background-size: cover;
-}
-
 /* PAGINA ESTILOS CSS AQUI */
 .pagina-div {
+    margin-top: 50px;
     font-size: 50px;
     text-align: center;
     font-family: sans-serif;
@@ -255,10 +256,14 @@ a {
     margin-top: 20px;
     padding: 10px;
     cursor: pointer;
+    background-color: #e2edf7;
+    font-family: "K2D", sans-serif;
+    color: rgb(22, 21, 21);
+    text-align: center;
 }
 
 .new.post__container {
-    margin-top: 40px;
+    margin-top: 80px;
     display: flex;
     align-items: center;
     gap: 30px;
@@ -276,7 +281,7 @@ a {
 }
 
 .posts {
-    margin-top: 20px;
+    margin-top: 70px;
 }
 
 .posts__post {
@@ -285,6 +290,7 @@ a {
     width: 900px;
     position: relative;
     margin-bottom: 10px;
+    margin-top: 70px;
 }
 
 .posts__post p {
