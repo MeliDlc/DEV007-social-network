@@ -42,11 +42,8 @@ export const register = (onNavigate) => {
   `;
 
   const registerButton = registerDiv.querySelector('#btnRegister');
-
-  /*const usuario = registerDiv.querySelector('#user');*/
   const inputCorreo = registerDiv.querySelector('#input-correo');
   const inputContraseña = registerDiv.querySelector('#input-contraseña');
-  /*const inputPasswordAgain = registerDiv.querySelector('#input-repetirContra');*/
 
   registerButton.addEventListener('click', (e) => {
     e.preventDefault();

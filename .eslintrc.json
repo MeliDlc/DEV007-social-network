@@ -21,6 +21,7 @@
     "linebreak-style": 0,
     "prefer-destructuring": 0,
     "no-param-reassign": ["error", { "props": false }],
+    "quotes": [0, "single", { "avoidEscape": true }],
     "import/extensions": 0,
     "import/prefer-default-export": 0,
     "jest/no-disabled-tests": "warn",

@@ -40,12 +40,11 @@ export const login = (onNavigate) => {
   `;
 
   const loginButton = loginDiv.querySelector('#btnLogin');
-  
 
   const inputEmail = loginDiv.querySelector('#input-email');
   const inputPassword = loginDiv.querySelector('#input-password');
 
-  loginButton.addEventListener('click', (e) => {
+  loginButton.addEventListener('click', () => {
     loginUsuarioConCorreoYContraseña(
       inputEmail.value,
       inputPassword.value,

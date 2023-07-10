@@ -1,21 +1,28 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { addDoc, collection, deleteDoc, updateDoc,doc } from "firebase/firestore";
-import { auth,db } from '../firebase'; 
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 
-export const loginUsuarioConCorreoYContraseña = (email, contraseña) => {
-  return signInWithEmailAndPassword(auth, email, contraseña);
+import { auth, db } from '../firebase';
+
+export const loginUsuarioConCorreoYContraseña = (email, contraseña) =>
+{ return signInWithEmailAndPassword(auth, email, contraseña);
 
 };
 
-export const registrarUsuarioConCorreoYContraseña = (email, contraseña) => {
+export const registrarUsuarioConCorreoYContraseña = (email, contraseña) => 
+{
   return createUserWithEmailAndPassword(auth, email, contraseña);
-
 };
 
 export const agregarUnNuevoPost = (contenido) => {
   alert(auth);
-  return addDoc(collection(db,'posts'), {
+  return addDoc(collection(db, 'posts'), {
     contenido: contenido,
     usuario: auth.currentUser.email,
     datetime: new Date()
@@ -37,7 +44,7 @@ export const editarPost = async (postId, nuevoContenido) => {
 
 export const borrarPost = async (postId) => {
   const postRef = doc(db, 'posts', postId);
-  
+
   try {
     await deleteDoc(postRef);
     console.log('Post borrado exitosamente');
@@ -45,4 +52,3 @@ export const borrarPost = async (postId) => {
     console.log('Error al borrar el post:', error);
   }
 };
-

@@ -2,7 +2,7 @@ export const home = (onNavigate) => {
   const homeDiv = document.createElement('div');
   homeDiv.className = 'homeDiv';
 
-  homeDiv.innerHTML+= `
+  homeDiv.innerHTML += `
   <div class="contenedorImg">
       <img src="img/viajando.png" class="logo">
   `;
@@ -12,8 +12,7 @@ export const home = (onNavigate) => {
   buttonRegister.className = 'botonInicio';
 
   buttonRegister.addEventListener('click', () => onNavigate('/login'));
-
   homeDiv.appendChild(buttonRegister);
-  
+
   return homeDiv;
 };

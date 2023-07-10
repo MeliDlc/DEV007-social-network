@@ -1,10 +1,11 @@
+import { query, collection, onSnapshot } from "firebase/firestore";
 import { agregarUnNuevoPost, borrarPost, editarPost } from '../lib';
-import { auth, db } from '../firebase';
-import { updateDoc, doc } from "firebase/firestore";
+import { db } from '../firebase';
 
 export const pagina = (onNavigate) => {
   const PaginaDiv = document.createElement('div');
   PaginaDiv.textContent = "BIENVENIDO";
+
   PaginaDiv.className = 'pagina-div';
 
   const buttonHome = document.createElement('button');
@@ -27,64 +28,58 @@ export const pagina = (onNavigate) => {
     'click',
     () => {
       const contenidoDelTextarea = PaginaDiv.querySelector(
-        '.new-post__container__textarea');
+        '.new-post__container__textarea',
+      );
+
       agregarUnNuevoPost(contenidoDelTextarea.value)
-        .then((docRef) => {
-          console.log('publicación exitosa');
-          renderizarPost(contenidoDelTextarea.value, auth.currentUser.email, new Date(), docRef.id);
+        .then(() => {
           contenidoDelTextarea.value = '';
         });
-    });
+    },
+  );
 
-  const renderizarPost = (contenido, usuario, datetime, postId) => {
+  const q = query(collection(db, "posts"));
+
+  onSnapshot(q, (querySnapshot) => {
     const postsContainer = document.getElementById('postsContainer');
+    querySnapshot.forEach((doc) => {
+      const postDiv = document.createElement('div');
+      postDiv.className = 'posts__post';
 
-    const postDiv = document.createElement('div');
-    postDiv.className = 'posts__post';
-    postDiv.id = postId;
+      const contenidoP = document.createElement('p');
+      contenidoP.textContent = doc.data().contenido;
 
-    const contenidoP = document.createElement('p');
-    contenidoP.className = 'post-content'
-    contenidoP.textContent = contenido;
+      const usuarioH6 = document.createElement('h6');
+      usuarioH6.textContent = doc.data().usuario;
 
-    const usuarioH6 = document.createElement('h6');
-    usuarioH6.textContent = usuario;
+      const datetimeP = document.createElement('p');
+      datetimeP.textContent = doc.data().datetime;
 
-    const datetimeP = document.createElement('p');
-    datetimeP.textContent = datetime.toString();
+      const editarButton = document.createElement('button');
+      editarButton.textContent = 'Editar';
+      editarButton.addEventListener('click', () => {
+        editarPostUI(doc.id, contenidoP, editarButton);
+      });
 
-    const editarButton = document.createElement('button');
-    editarButton.textContent = 'Editar';
-    editarButton.addEventListener('click', () => {
-      editarPostUI(postId, contenidoP, editarButton);
+      const borrarButton = document.createElement('button');
+      borrarButton.textContent = 'Borrar';
+      borrarButton.addEventListener('click', () => {
+        borrarPost(doc.id);
+
+        postDiv.remove();
+      });
+
+      postDiv.appendChild(contenidoP);
+      postDiv.appendChild(usuarioH6);
+      postDiv.appendChild(datetimeP);
+      postDiv.appendChild(editarButton);
+      postDiv.appendChild(borrarButton);
+
+      postsContainer.appendChild(postDiv);
+
+      console.log(doc.data());
     });
-
-    const borrarButton = document.createElement('button');
-    borrarButton.textContent = 'Borrar';
-    borrarButton.addEventListener('click', () => {
-      borrarPost(postId);
-      postDiv.remove();
-    });
-
-    postDiv.appendChild(contenidoP);
-    postDiv.appendChild(usuarioH6);
-    postDiv.appendChild(datetimeP);
-    postDiv.appendChild(editarButton);
-    postDiv.appendChild(borrarButton);
-
-    postsContainer.appendChild(postDiv);
-  };
-
-  const renderizarPostCambio = (contenido, usuario, datetime, postId) => {
-    const postsContainer = document.getElementById('postsContainer');
-alert(contenido + " "+postId)
-    const postDiv = document.getElementById(postId);
-    postDiv.className = 'posts__post';
-    postDiv.id = postId;
-
-    const contenidoP = postDiv.querySelector(".post-content")
-    contenidoP.textContent = contenido;
-  };
+  });
 
   const editarPostUI = (postId, contenidoP, editarButton) => {
     const contenidoOriginal = contenidoP.textContent;
@@ -95,60 +90,81 @@ alert(contenido + " "+postId)
     const guardarButton = document.createElement('button');
     guardarButton.textContent = 'Guardar';
     guardarButton.addEventListener('click', () => {
-      guardarCambios(postId, contenidoP, textarea, guardarButton, cancelarButton, editarButton, contenidoOriginal);
+      guardarCambios(
+        postId,
+        contenidoP,
+        textarea,
+        guardarButton,
+        cancelarButton,
+        editarButton,
+        contenidoOriginal,
+      );
     });
 
     const cancelarButton = document.createElement('button');
     cancelarButton.textContent = 'Cancelar';
     cancelarButton.addEventListener('click', () => {
-      eliminarElementosEdicion(postId, contenidoP, textarea, guardarButton, cancelarButton, editarButton, contenidoOriginal);
+      eliminarElementosEdicion(
+        postId,
+        contenidoP,
+        textarea,
+        guardarButton,
+        cancelarButton,
+        editarButton,
+        contenidoOriginal,
+      );
     });
 
     contenidoP.replaceWith(textarea);
     editarButton.replaceWith(guardarButton, cancelarButton);
   };
 
-  /*const guardarCambios = (postId, contenidoP, textarea, guardarButton, cancelarButton, editarButton, contenidoOriginal) => {
+  const guardarCambios = async (
+    postId,
+    contenidoP,
+    textarea,
+    guardarButton,
+    cancelarButton,
+    editarButton,
+    contenidoOriginal,
+  ) => {
     const nuevoContenido = textarea.value;
- 
-    editarPost(postId, nuevoContenido);
- 
-    // Verificar que cancelarButton sea un objeto válido antes de pasarlo como argumento
-    if (cancelarButton && typeof cancelarButton.indexOf === 'function') {
-      eliminarElementosEdicion(postId, contenidoP, textarea, guardarButton, cancelarButton, editarButton, contenidoOriginal);
-    } else {
-      console.log('El objeto cancelarButton no es válido.');
-    }
-  };*/
-
-  const guardarCambios = async (postId, contenidoP, textarea, guardarButton, cancelarButton, editarButton, contenidoOriginal) => {
-    const nuevoContenido = textarea.value;
-
     await editarPost(postId, nuevoContenido);
-    renderizarPostCambio(nuevoContenido, auth.currentUser.email, new Date(), postId);
 
-    eliminarElementosEdicion(postId, contenidoP, textarea, guardarButton, cancelarButton, editarButton, contenidoOriginal);
+    eliminarElementosEdicion(
+      postId,
+      contenidoP,
+      textarea,
+      guardarButton,
+      cancelarButton,
+      editarButton,
+      contenidoOriginal,
+    );
   };
-           
 
-
-  const eliminarElementosEdicion = (postId, contenidoP, textarea, guardarButton, cancelarButton, editarButton, contenidoOriginal) => {
+  const eliminarElementosEdicion = (
+    postId,
+    contenidoP,
+    textarea,
+    guardarButton,
+    cancelarButton,
+    editarButton,
+    contenidoOriginal,
+  ) => {
     if (contenidoOriginal === '') {
       borrarPost(postId);
     } else {
       contenidoP.textContent = textarea.value;
       textarea.replaceWith(contenidoP);
       guardarButton.replaceWith(editarButton);
-  
+
       if (cancelarButton && cancelarButton.parentNode) {
         cancelarButton.parentNode.removeChild(cancelarButton);
       }
     }
   };
 
+  PaginaDiv.appendChild(buttonHome);
 
-
-PaginaDiv.appendChild(buttonHome);
-
-return PaginaDiv;
-}
+  return PaginaDiv;
+};
