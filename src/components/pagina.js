@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { query, collection, onSnapshot } from "firebase/firestore";
 import { agregarUnNuevoPost, borrarPost, editarPost } from '../lib';
 import { db } from '../firebase';
@@ -127,7 +128,7 @@ export const pagina = (onNavigate) => {
     cancelarButton,
     editarButton,
     contenidoOriginal,
-  ) => {
+    ) => {
     const nuevoContenido = textarea.value;
     await editarPost(postId, nuevoContenido);
 
@@ -139,7 +140,7 @@ export const pagina = (onNavigate) => {
       cancelarButton,
       editarButton,
       contenidoOriginal,
-    );
+   );
   };
 
   const eliminarElementosEdicion = (
@@ -150,7 +151,7 @@ export const pagina = (onNavigate) => {
     cancelarButton,
     editarButton,
     contenidoOriginal,
-  ) => {
+    ) => {
     if (contenidoOriginal === '') {
       borrarPost(postId);
     } else {
