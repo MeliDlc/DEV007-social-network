@@ -259,7 +259,6 @@ a {
     text-align: center;
     text-transform: uppercase;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
 
     &:hover,
     &:focus {
@@ -395,8 +394,7 @@ a {
     text-align: center;
     text-transform: uppercase;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-  
+      
     &:hover,
     &:focus {
       color: #fff;
@@ -497,6 +495,10 @@ textarea {
   margin-right: 10px;
 }
 
+.posts__post button {
+    margin-top: 10px;
+  }
+
 .new-post__container__button:hover,
 .new-post__container__button:focus,
 .posts__post button:hover,
@@ -504,9 +506,7 @@ textarea {
   background-color: #313133;
 }
 
-.posts__post button {
-  margin-top: 10px;
-}
+
 
 .posts__post button:first-child {
   margin-top: 0;
