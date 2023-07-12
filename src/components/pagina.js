@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { query, collection, onSnapshot } from "firebase/firestore";
+import { query, collection, onSnapshot, orderBy } from "firebase/firestore";
 import { agregarUnNuevoPost, borrarPost, editarPost } from '../lib';
 import { db } from '../firebase';
 
@@ -39,10 +39,12 @@ export const pagina = (onNavigate) => {
     },
   );
 
-  const q = query(collection(db, "posts"));
+  const q = query(collection(db, "posts"), orderBy("datetime", "desc"));
 
   onSnapshot(q, (querySnapshot) => {
     const postsContainer = document.getElementById('postsContainer');
+    postsContainer.innerHTML = ""; // Limpiar el contenedor de posts antes de agregar los nuevos
+
     querySnapshot.forEach((doc) => {
       const postDiv = document.createElement('div');
       postDiv.className = 'posts__post';
@@ -170,3 +172,20 @@ export const pagina = (onNavigate) => {
 
   return PaginaDiv;
 };
+
+// Función para ordenar los posts por fecha y hora, mostrando el último post en la parte superior
+const ordenarPostsPorFechaHora = () => {
+  const postsContainer = document.getElementById('postsContainer');
+  const posts = Array.from(postsContainer.getElementsByClassName('posts__post'));
+
+  posts.sort((a, b) => {
+    const datetimeA = new Date(a.querySelector('p').textContent);
+    const datetimeB = new Date(b.querySelector('p').textContent);
+    return datetimeB - datetimeA;
+  });
+
+  posts.forEach(post => postsContainer.prepend(post));
+};
+
+window.addEventListener('load', ordenarPostsPorFechaHora);
+
