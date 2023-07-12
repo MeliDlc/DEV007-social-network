@@ -5,7 +5,7 @@ import { db } from '../firebase';
 
 export const pagina = (onNavigate) => {
   const PaginaDiv = document.createElement('div');
-  PaginaDiv.textContent = "BIENVENIDO";
+  PaginaDiv.textContent = "YA ES TIEMPO DE OTRA AVENTURA";
 
   PaginaDiv.className = 'pagina-div';
 
@@ -54,7 +54,8 @@ export const pagina = (onNavigate) => {
       usuarioH6.textContent = doc.data().usuario;
 
       const datetimeP = document.createElement('p');
-      datetimeP.textContent = doc.data().datetime;
+      const datetime = new Date(doc.data().datetime.toMillis());
+      datetimeP.textContent = datetime.toLocaleString();
 
       const editarButton = document.createElement('button');
       editarButton.textContent = 'Editar';

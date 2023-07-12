@@ -122,7 +122,7 @@ body {
       opacity: 0;
     }
   }
-
+/*configuracion general*/
 *,
 :after,
 :before {
@@ -194,11 +194,12 @@ a {
     margin: 0 15px 10px 0;
     display: inline-block;
     border-bottom: 2px solid transparent;
+    color: #c1d6f0;
 }
 
 .login-html .sign-in:checked+.tab,
 .login-html .sign-up:checked+.tab {
-    color: #fff;
+    color: #04027c;
     border-color: #f0e6e2;
 }
 
@@ -240,8 +241,36 @@ a {
 }
 
 .login-form .group .button {
-    background: #bbcef0;
-}
+    box-sizing: border-box;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid #04027c;
+    border-radius: 0.6em;
+    color: #04027c;
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    margin: 20px;
+    padding: 1.2em 2.8em;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+
+    &:hover,
+    &:focus {
+        color: #fff;
+        outline: 0;
+    }
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    &:hover {
+      box-shadow: 0 0 40px 40px #04027c inset;
+    }
+  }
 
 .google-btn .icon {
     display: inline-block;
@@ -289,7 +318,7 @@ a {
 }
 
 .login-form .group .check:checked+label .icon {
-    background: #1161ee;
+    background: #04027c;
 }
 
 .login-form .group .check:checked+label .icon:before {
@@ -319,7 +348,7 @@ a {
 }
 
 .google-btn {
-    background-color: #1161ee;
+    background-color: #04027c;
     color: #fff;
     display: inline-flex;
     align-items: center;
@@ -343,30 +372,62 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+    color: #04027c;
+  }
+  
 
-.pagina-div__button {
-    margin-top: 20px;
-    padding: 10px;
+  .pagina-div__button {
+    box-sizing: border-box;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid #04027c;
+    border-radius: 0.6em;
+    color: #04027c;
     cursor: pointer;
-    background-color: #e2edf7;
-    font-family: "K2D", sans-serif;
-    color: rgb(22, 21, 21);
+    display: flex;
+    align-self: center;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    margin: 20px;
+    padding: 1.2em 2.8em;
+    text-decoration: none;
     text-align: center;
-}
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  
+    &:hover,
+    &:focus {
+      color: #fff;
+      outline: 0;
+    }
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    &:hover {
+      box-shadow: 0 0 40px 40px #04027c inset;
+    }
+  }
 
-.new.post__container {
+  .new-post__container {
     margin-top: 80px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 30px;
-}
+  }
 
-.new.post__container__textarea {
+  .new-post__container__textarea {
     height: 80px;
     width: 600px;
     resize: none;
-}
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    padding: 10px;
+    border: 2px solid #04027c;
+    border-radius: 4px;
+    outline: none;
+    background-color: #c1d6f09c;
+  }
 
 .new.post__container__button {
     padding: 10px;
@@ -378,7 +439,10 @@ a {
 }
 
 .posts__post {
-    border: 2px solid slateblue;
+    border: 2px solid #04027c;
+    border-radius: 10px;
+    background-color: rgb(193, 214, 240);
+    background-color: rgba(193, 214, 240, 0.35);
     padding: 10px;
     width: 900px;
     position: relative;
@@ -387,14 +451,63 @@ a {
 }
 
 .posts__post p {
-    font-size: 19px;
+    font-size: 22px;
+    font-family: 'Nunito', sans-serif;
     margin-bottom: 40px;
+    color: #04027c;
 }
 
 .posts__post h6 {
     position: absolute;
     bottom: 0;
     right: 0;
-    font-size: 22px;
+    font-size: 18px;
     margin: 0 10px 10px 0;
+}
+
+textarea {
+    height: 80px;
+    width: 600px;
+    resize: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    padding: 10px;
+    border: 2px solid #04027c;
+    border-radius: 4px;
+    outline: none;
+    background-color: #c1d6f09c;
+  }
+
+/*botones pagina*/
+.new-post__container__button,
+.posts__post button {
+  min-width: 120px;
+  height: 40px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #fff;
+  background-color: #04027c;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  margin-right: 10px;
+}
+
+.new-post__container__button:hover,
+.new-post__container__button:focus,
+.posts__post button:hover,
+.posts__post button:focus {
+  background-color: #313133;
+}
+
+.posts__post button {
+  margin-top: 10px;
+}
+
+.posts__post button:first-child {
+  margin-top: 0;
 }
